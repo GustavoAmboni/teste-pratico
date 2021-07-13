@@ -1,6 +1,7 @@
 <?php
 
-class Endereco{
+class Endereco
+{
     public int $id;
     public String $estado;
     public String $cidade;
@@ -19,55 +20,68 @@ class Endereco{
         $this->numero = $numero;
     }
 
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getEstado(){
+    public function getEstado()
+    {
         return $this->estado;
     }
 
-    public function setEstado(String $estado){
+    public function setEstado(String $estado)
+    {
         $this->estado = $estado;
     }
 
-    public function getCidade(){
+    public function getCidade()
+    {
         return $this->cidade;
     }
 
-    public function setCidade(String $cidade){
+    public function setCidade(String $cidade)
+    {
         $this->cidade = $cidade;
     }
 
-    public function getBairro(){
+    public function getBairro()
+    {
         return $this->bairro;
     }
 
-    public function setBairro(String $bairro){
+    public function setBairro(String $bairro)
+    {
         $this->bairro = $bairro;
     }
 
-    public function getRua(){
+    public function getRua()
+    {
         return $this->rua;
     }
 
-    public function setRua(String $rua){
+    public function setRua(String $rua)
+    {
         $this->rua = $rua;
     }
 
-    public function getCep(){
+    public function getCep()
+    {
         return $this->cep;
     }
 
-    public function setCep(int $cep){
+    public function setCep(int $cep)
+    {
         $this->cep = $cep;
     }
 
-    public function getNumero(){
+    public function getNumero()
+    {
         return $this->numero;
     }
 
-    public function setNumero(int $numero){
+    public function setNumero(int $numero)
+    {
         $this->numero = $numero;
     }
 }

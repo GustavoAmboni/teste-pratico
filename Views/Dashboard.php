@@ -14,18 +14,18 @@
           </tr>
         </thead>
         <tbody>
-          <?php foreach($v_clients as $client){ ?>
+          <?php foreach ($v_clients as $client) { ?>
             <tr>
-            <td scope="col"><?=$client->id?></td>
-            <td scope="col"><?=$client->nome?></td>
-            <td scope="col"><?=$client->sobrenome?></td>
-            <td scope="col">
-              <form method="POST" action="?view=cliente&action=update&id=<?= $client->id?>">
-                <button type="submit" class="btn btn-primary">Editar</button>
-              </form>
-            </td>
-          </tr>
-          <?php }?>
+              <td scope="col"><?= $client->id ?></td>
+              <td scope="col"><?= $client->nome ?></td>
+              <td scope="col"><?= $client->sobrenome ?></td>
+              <td scope="col">
+                <form method="POST" action="?view=cliente&action=update&id=<?= $client->id ?>">
+                  <button type="submit" class="btn btn-primary">Editar</button>
+                </form>
+              </td>
+            </tr>
+          <?php } ?>
         </tbody>
       </table>
     </div>

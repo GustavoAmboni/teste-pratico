@@ -2,7 +2,7 @@
 
 require "db/Database.php";
 
-class Cliente 
+class Cliente
 {
     public int $id;
     public String $nome;
@@ -23,7 +23,8 @@ class Cliente
         $this->endereco = $endereco;
     }
 
-    public static function selectAll(){
+    public static function selectAll()
+    {
         $db = Connection::getConnection();
 
         $sql = "SELECT 
@@ -39,7 +40,7 @@ class Cliente
 
         $clientes = [];
 
-        while($row = $sql->fetch(PDO::FETCH_ASSOC)){
+        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
             $clientes[] = new Cliente(
                 $row['nome'],
                 $row['sobrenome'],
@@ -60,7 +61,8 @@ class Cliente
         return $clientes;
     }
 
-    public static function selectOne(int $id){
+    public static function selectOne(int $id)
+    {
 
         $db = Connection::getConnection();
 
@@ -79,7 +81,7 @@ class Cliente
 
         $row = $sql->fetch(PDO::FETCH_ASSOC);
 
-        if($row){
+        if ($row) {
 
             $client = new Cliente(
                 $row['nome'],
@@ -104,7 +106,8 @@ class Cliente
         return $client;
     }
 
-    public static function create(Cliente $cliente){
+    public static function create(Cliente $cliente)
+    {
         $db = Connection::getConnection();
 
         $sql = 'INSERT INTO endereco (estado, cidade, bairro, rua, cep, numero) VALUES (:estado, :cidade, :bairro, :rua, :cep, :numero)';
@@ -117,12 +120,12 @@ class Cliente
         $sql->bindValue(":cep", $cliente->getEndereco()->getCep());
         $sql->bindValue(":numero", $cliente->getEndereco()->getNumero());
 
-        if(!$sql->execute()){
+        if (!$sql->execute()) {
             throw new Exception("Falha ao inserir no banco de dados.");
         }
 
         $enderecoId = $db->lastInsertId();
-        
+
         $sql = 'INSERT INTO cliente (nome, sobrenome, cnpj, telefone, idEndereco) VALUES (:nome, :sobrenome, :cnpj, :telefone, :idEndereco)';
 
         $sql = $db->prepare($sql);
@@ -132,25 +135,27 @@ class Cliente
         $sql->bindValue(":telefone", $cliente->getTelefone());
         $sql->bindValue(":idEndereco", $enderecoId);
 
-        if(!$sql->execute()){
+        if (!$sql->execute()) {
             throw new Exception("Falha ao inserir no banco de dados.");
         }
     }
 
-    public static function delete(int $id){
+    public static function delete(int $id)
+    {
         $db = Connection::getConnection();
-        
+
         $sql = 'DELETE FROM cliente WHERE cliente.id = :id';
 
         $sql = $db->prepare($sql);
         $sql->bindValue(":id", $id);
 
-        if(!$sql->execute()){
+        if (!$sql->execute()) {
             throw new Exception("Falha ao deletar o cliente.");
         }
     }
 
-    public static function update(Cliente $cliente){
+    public static function update(Cliente $cliente)
+    {
         $db = Connection::getConnection();
 
         $sql = 'UPDATE endereco INNER JOIN cliente ON cliente.idEndereco = endereco.id  SET estado = :estado, cidade = :cidade, bairro = :bairro, rua = :rua, cep = :cep, numero = :numero WHERE cliente.id = :id';
@@ -164,10 +169,10 @@ class Cliente
         $sql->bindValue(":numero", $cliente->getEndereco()->getNumero());
         $sql->bindValue(":id", $cliente->getId());
 
-        if(!$sql->execute()){
+        if (!$sql->execute()) {
             throw new Exception("Falha ao atualizar o banco de dados.");
         }
-        
+
         $sql = 'UPDATE cliente SET nome = :nome, sobrenome = :sobrenome, cnpj = :cnpj, telefone = :telefone WHERE cliente.id = :id';
 
         $sql = $db->prepare($sql);
@@ -177,61 +182,73 @@ class Cliente
         $sql->bindValue(":telefone", $cliente->getTelefone());
         $sql->bindValue(":id", $cliente->getId());
 
-        if(!$sql->execute()){
+        if (!$sql->execute()) {
             throw new Exception("Falha ao atualizar o banco de dados.");
         }
     }
 
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
-    private function setId(int $id){
+    private function setId(int $id)
+    {
         $this->id = $id;
     }
 
-    public function getNome(){
+    public function getNome()
+    {
         return $this->nome;
     }
 
-    public function setNome(String $nome){
+    public function setNome(String $nome)
+    {
         $this->nome = $nome;
     }
 
-    public function getSobrenome(){
+    public function getSobrenome()
+    {
         return $this->sobrenome;
     }
 
-    public function setSobrenome(String $sobrenome){
+    public function setSobrenome(String $sobrenome)
+    {
         $this->sobrenome = $sobrenome;
     }
 
-    public function getCnpj(){
+    public function getCnpj()
+    {
         return $this->cnpj;
     }
 
-    public function setCnpj(String $cnpj){
+    public function setCnpj(String $cnpj)
+    {
         $this->cnpj = $cnpj;
     }
 
-    public function getTelefone(){
+    public function getTelefone()
+    {
         return $this->telefone;
     }
 
-    public function setTelefone(int $telefone){
+    public function setTelefone(int $telefone)
+    {
         $this->telefone = $telefone;
     }
 
-    public function getDataCadastro(){
+    public function getDataCadastro()
+    {
         return $this->dataCadastro;
     }
 
-    private function setDataCadastro(String $dataCadastro){
-        $this->dataCadastro = $dataCadastro;   
+    private function setDataCadastro(String $dataCadastro)
+    {
+        $this->dataCadastro = $dataCadastro;
     }
 
-    public function getEndereco(){
+    public function getEndereco()
+    {
         return $this->endereco;
     }
-
 }

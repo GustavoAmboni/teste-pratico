@@ -103,6 +103,8 @@ class ClienteController extends Controller
                 'type' => 'success',
                 'content' => "Cliente alterado com sucesso!"
             ];
+            
+            header("location: /");
         }
 
         $this->view('Layout', $data);

@@ -12,4 +12,4 @@ require_once "Core/Core.php";
 session_start();
 
 $core = new Core();
-$core->start(array($_GET, $_POST)); 
+$core->start(array($_GET, $_POST));

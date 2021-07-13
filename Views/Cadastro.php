@@ -65,9 +65,9 @@
             <?php } ?>
             <div class="col-4"></div>
             <?php if ($v_action == "update") { ?>
-                <input name="save" value="<?=$v_cliente->id?>" hidden>
+                <input name="save" value="<?= $v_cliente->id ?>" hidden>
                 <div class="col-2">
-                    <a href="?view=cliente&action=delete&id=<?=$v_cliente->id?>" class="btn btn-danger">Delete</a>
+                    <a href="?view=cliente&action=delete&id=<?= $v_cliente->id ?>" class="btn btn-danger">Delete</a>
                 </div>
             <?php } ?>
         </div>
